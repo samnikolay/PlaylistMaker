@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
             override fun onClick(p0: View?) {
                 val searchIntent = Intent(this@MainActivity, SearchActivity::class.java)
                 startActivity(searchIntent)
+
             }
         }
         // Вызываем слушателя ПОИСК
