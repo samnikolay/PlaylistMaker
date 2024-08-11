@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/setting_background"
     android:paddingRight="@dimen/main_padding"
     android:paddingLeft="@dimen/main_padding">
 
@@ -27,92 +27,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/settings"
-            android:textColor="@color/text_color"
+            android:textColor="@color/settings_text_color"
             android:textSize="@dimen/title_size"
             android:layout_marginTop="12dp"/>
     </LinearLayout>
 
-    <FrameLayout
+    <!-- Код сокращен по рекомендации ревьювера -->
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        style="@style/SettingTextView"
+        android:id="@+id/themeSwitcher1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/setting_padding"
-        android:paddingBottom="@dimen/setting_padding">
+        android:gravity="center_vertical"
+        android:paddingVertical="20dp"
+        android:text="@string/dark_mode"
+        android:textColor="@color/settings_text_color"
+        android:textSize="16sp"
+        android:thumbTintMode="screen" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="@string/dark_mode"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/setting_text_size"/>
+    <com.google.android.material.textview.MaterialTextView
+        style="@style/SettingTextView"
+        android:drawableEnd="@drawable/share"
+        android:text="@string/share_app"/>
 
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"/>
-    </FrameLayout>
+    <com.google.android.material.textview.MaterialTextView
+        style="@style/SettingTextView"
+        android:drawableEnd="@drawable/support"
+        android:text="@string/write_to_support"/>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/setting_padding"
-        android:paddingBottom="@dimen/setting_padding">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="@string/share_app"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/setting_text_size"/>
-
-        <ImageView
-            android:layout_width="@dimen/setting_icon_size"
-            android:layout_height="@dimen/setting_icon_size"
-            android:src="@drawable/share"
-            android:layout_gravity="end"/>
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/setting_padding"
-        android:paddingBottom="@dimen/setting_padding">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="@string/write_to_support"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/setting_text_size"/>
-
-        <ImageView
-            android:layout_width="@dimen/setting_icon_size"
-            android:layout_height="@dimen/setting_icon_size"
-            android:src="@drawable/support"
-            android:layout_gravity="end"/>
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/setting_padding"
-        android:paddingBottom="@dimen/setting_padding">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="@string/terms_of_use"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/setting_text_size"/>
-
-        <ImageView
-            android:layout_width="@dimen/setting_icon_size"
-            android:layout_height="@dimen/setting_icon_size"
-            android:src="@drawable/forward"
-            android:layout_gravity="end"/>
-    </FrameLayout>
+    <com.google.android.material.textview.MaterialTextView
+        style="@style/SettingTextView"
+        android:drawableEnd="@drawable/forward"
+        android:text="@string/terms_of_use"/>
 
 </LinearLayout>
