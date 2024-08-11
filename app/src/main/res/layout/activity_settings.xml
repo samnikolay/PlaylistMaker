@@ -46,16 +46,19 @@
         android:thumbTintMode="screen" />
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/shareButton"
         style="@style/SettingTextView"
         android:drawableEnd="@drawable/share"
         android:text="@string/share_app"/>
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/supportButton"
         style="@style/SettingTextView"
         android:drawableEnd="@drawable/support"
         android:text="@string/write_to_support"/>
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/forwardButton"
         style="@style/SettingTextView"
         android:drawableEnd="@drawable/forward"
         android:text="@string/terms_of_use"/>

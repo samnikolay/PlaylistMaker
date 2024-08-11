@@ -21,26 +21,20 @@ class MainActivity : AppCompatActivity() {
         val mediaLibraryButton = findViewById<Button>(R.id.media_library_button)
         val settingsButton = findViewById<Button>(R.id.settings_button)
 
-        // Первый способ - Создаем слушатель для кнопки ПОИСК
-        val searchButtonClickListener: View.OnClickListener = object : View.OnClickListener {
-            override fun onClick(p0: View?) {
-                val searchIntent = Intent(this@MainActivity, SearchActivity::class.java)
-                startActivity(searchIntent)
 
-            }
+        // Кнопка перехода на экран поиска
+        searchButton.setOnClickListener {
+            val searchIntent = Intent(this, SearchActivity::class.java)
+            startActivity(searchIntent)
         }
-        // Вызываем слушателя ПОИСК
-        searchButton.setOnClickListener(searchButtonClickListener)
 
-        // Второй способ - Создаем слушателя для кнопки МЕДИАТЕКА через люмбду
-        val mediaLibraryButtonClickListener: View.OnClickListener = View.OnClickListener {
-            val mediaLibraryIntent = Intent(this@MainActivity, MediaLibraryActivity::class.java)
+        // Кнопка перехода на экран медиатеки
+        mediaLibraryButton.setOnClickListener {
+            val mediaLibraryIntent = Intent(this, MediaLibraryActivity::class.java)
             startActivity(mediaLibraryIntent)
         }
-        // Вызываем слушателя МЕДИАТЕКА
-        mediaLibraryButton.setOnClickListener(mediaLibraryButtonClickListener)
 
-        // Третий способ - пишем код исполения
+        // Кнопка перехода на страницу настроек
         settingsButton.setOnClickListener {
             val settingsIntent = Intent(this, SettingsActivity::class.java)
             startActivity(settingsIntent)
