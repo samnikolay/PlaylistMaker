@@ -17,7 +17,7 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_settings)
 
         // Получаем id кнопки из ресурсов
-        val backButton = findViewById<ImageView>(R.id.arrow_back)
+        val backButton = findViewById<ImageView>(R.id.arrowBack)
         val shareButton = findViewById<TextView>(R.id.shareButton)
         val supportButton = findViewById<TextView>(R.id.supportButton)
         val forwardButton = findViewById<TextView>(R.id.forwardButton)

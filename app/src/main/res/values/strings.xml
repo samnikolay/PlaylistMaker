@@ -9,6 +9,7 @@
     <string name="share_app">Поделиться приложением</string>
     <string name="write_to_support">Написать в поддержку</string>
     <string name="terms_of_use">Пользовательское соглашение</string>
+    <string name="search_edit_hint">Поиск</string>
 
 
     <string name="share_text">https://practicum.yandex.ru/android-developer/</string>
