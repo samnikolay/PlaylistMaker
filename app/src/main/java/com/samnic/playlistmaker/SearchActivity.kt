@@ -29,8 +29,7 @@ class SearchActivity : AppCompatActivity() {
 
         // Кнопка назад
         backButton.setOnClickListener {
-            val mainsIntent = Intent(this, MainActivity::class.java)
-            startActivity(mainsIntent)
+            finish()
         }
 
         clearIcon.setOnClickListener {

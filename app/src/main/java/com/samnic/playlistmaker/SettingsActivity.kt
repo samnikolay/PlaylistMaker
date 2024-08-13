@@ -24,45 +24,41 @@ class SettingsActivity : AppCompatActivity() {
 
         // Кнопка назад
         backButton.setOnClickListener {
-            val mainsIntent = Intent(this, MainActivity::class.java)
-            startActivity(mainsIntent)
+            finish()
         }
 
         // Кнопка поделиться
         shareButton.setOnClickListener {
-            val shareText = getString(R.string.share_text)
-
-            val intent = Intent().apply {
+            Intent().apply {
+                val shareText = getString(R.string.share_text)
                 action = Intent.ACTION_SEND // Тип экшена
                 putExtra(Intent.EXTRA_TEXT, shareText) // Текст сообщения
                 type = "text/plain" // Тип содержания
+                startActivity(Intent.createChooser(this, null));
             }
-
-            startActivity(Intent.createChooser(intent, null));
         }
 
         supportButton.setOnClickListener{
-            val title = getString(R.string.support_email_title)
-            val message = getString(R.string.support_email_text)
-            val myEmail = getString(R.string.my_email)
-
-            val supportIntent = Intent().apply {
+            Intent().apply {
+                val title = getString(R.string.support_email_title)
+                val message = getString(R.string.support_email_text)
+                val myEmail = getString(R.string.my_email)
                 action = Intent.ACTION_SENDTO
                 data = Uri.parse("mailto:")
                 putExtra(Intent.EXTRA_EMAIL, arrayOf(myEmail))
                 putExtra(Intent.EXTRA_SUBJECT, title)
                 putExtra(Intent.EXTRA_TEXT, message)
+                startActivity(this)
             }
-            startActivity(supportIntent)
         }
 
         forwardButton.setOnClickListener{
-            val url = getString(R.string.terms_of_use_link)
-            val forwardIntent = Intent(Intent.ACTION_VIEW).apply {
+           Intent().apply {
+                val url = getString(R.string.terms_of_use_link)
+                action = Intent.ACTION_VIEW
                 data = Uri.parse(url)
+                startActivity(this)
             }
-            startActivity(forwardIntent)
-
         }
 
     }

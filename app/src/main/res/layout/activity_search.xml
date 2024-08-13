@@ -57,10 +57,11 @@
                 <ImageView
                     android:id="@+id/clearIcon"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="end"
-                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                    android:src="@drawable/vector"
+                    android:paddingVertical="14dp"
+                    android:paddingHorizontal="14dp"
                     android:visibility="gone" />
         </FrameLayout>
 
