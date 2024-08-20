@@ -58,12 +58,12 @@ class SearchActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString("searchText", searchText)
+        outState.putString(EXTRA_SEARCH_TEXT, searchText)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        searchField.setText(savedInstanceState.getString("searchText",""))
+        searchField.setText(savedInstanceState.getString(EXTRA_SEARCH_TEXT,""))
     }
 
     private fun clearButtonVisibility(s: CharSequence?): Int {
@@ -73,4 +73,9 @@ class SearchActivity : AppCompatActivity() {
             View.VISIBLE
         }
     }
+
+    companion object {
+        const val EXTRA_SEARCH_TEXT = "searchText"
+    }
+
 }
