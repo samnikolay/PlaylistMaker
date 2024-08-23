@@ -12,4 +12,6 @@
     <color name="search_edit_hint">#AEAFB4</color>
     <color name="search_edit_text">#1A1B22</color>
     <color name="search_clear_icon">#AEAFB4</color>
+    <color name="track_title_color">#000000</color>
+    <color name="track_details_color">#AEAFB4</color>
 </resources>
