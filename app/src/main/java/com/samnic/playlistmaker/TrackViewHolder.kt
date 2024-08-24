@@ -1,6 +1,8 @@
 package com.samnic.playlistmaker
 
 
+import android.content.Context
+import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -19,12 +21,21 @@ class TrackViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         trackTitle.text = model.trackName
         trackDetails.text = "${model.artistName} • ${model.trackTime}"
 
+        val radius=dpToPx(2f,itemView.context)
+
         Glide
             .with(itemView)
             .load(model.artworkUrl100)
-            .placeholder(R.drawable.plc)
+            .placeholder(R.drawable.track_placeholder)
             // Отдельное применение  .transforms(RoundedCorners(10)) и CenterCrop() не сработало
-            .transforms(CenterCrop(), RoundedCorners(10))
+            .transforms(CenterCrop(), RoundedCorners(radius))
             .into(trackImage)
+    }
+
+    fun dpToPx(dp: Float, context: Context): Int {
+        return TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            dp,
+            context.resources.displayMetrics).toInt()
     }
 }
