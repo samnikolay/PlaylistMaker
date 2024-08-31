@@ -25,7 +25,7 @@
         android:layout_marginStart="8dp"
         android:ellipsize="end"
         android:maxLines="1"
-        tools:text="Here Comes The Sun (Remastered)" />
+        tools:text="[Here Comes The Sun (Remastered)]" />
 
     <TextView
         android:id="@+id/trackDetails"
@@ -41,7 +41,7 @@
         android:layout_marginTop="1dp"
         android:maxLines="1"
         android:ellipsize="end"
-        tools:text="The Beatles • 4:01" />
+        tools:text="[The Beatles • 4:01]" />
 
     <ImageView
         android:id="@+id/forwardArrow"

@@ -12,7 +12,6 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
 class TrackViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-
     private val trackImage: ImageView = itemView.findViewById(R.id.trackImage)
     private val trackTitle: TextView = itemView.findViewById(R.id.trackTitle)
     private val trackDetails: TextView = itemView.findViewById(R.id.trackDetails)

@@ -23,7 +23,6 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
-        // Получаем id кнопки из ресурсов
         searchField = findViewById(R.id.searchField)
         val backButton = findViewById<ImageView>(R.id.arrowBack)
         val clearButton = findViewById<ImageView>(R.id.clearIcon)
@@ -65,8 +64,6 @@ class SearchActivity : AppCompatActivity() {
         val newsAdapter = TrackAdapter(tracks)
         recyclerView.adapter = newsAdapter
 
-
-        // Кнопка назад
         backButton.setOnClickListener {
             finish()
         }
