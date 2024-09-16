@@ -52,7 +52,9 @@
                     android:textColorHint="@color/search_edit_hint"
                     android:fontFamily="@font/ys_display_regular"
                     android:textColor="@color/search_edit_text"
-                    android:inputType="text"/>
+                    android:inputType="text"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true"/>
 
                 <ImageView
                     android:id="@+id/clearIcon"

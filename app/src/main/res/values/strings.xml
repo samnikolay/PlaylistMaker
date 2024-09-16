@@ -10,6 +10,10 @@
     <string name="write_to_support">Написать в поддержку</string>
     <string name="terms_of_use">Пользовательское соглашение</string>
     <string name="search_edit_hint">Поиск</string>
+    <string name="empty_search">Ничего не найдено</string>
+    <string name="error_search_title">Проблемы со связью</string>
+    <string name="error_search_text">Загрузка не удалась. Проверьте подключение к интернету</string>
+    <string name="error_search_refresh">Обновить</string>
 
 
     <string name="share_text">https://practicum.yandex.ru/android-developer/</string>
