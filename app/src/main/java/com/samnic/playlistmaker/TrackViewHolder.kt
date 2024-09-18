@@ -10,15 +10,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class TrackViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-
     private val trackImage: ImageView = itemView.findViewById(R.id.trackImage)
     private val trackTitle: TextView = itemView.findViewById(R.id.trackTitle)
     private val trackDetails: TextView = itemView.findViewById(R.id.trackDetails)
 
     fun bind(model: Track) {
         trackTitle.text = model.trackName
+        model.trackTime = SimpleDateFormat("mm:ss", Locale.getDefault()).format(model.trackTimeMillis)
         trackDetails.text = "${model.artistName} • ${model.trackTime}"
 
         val radius=dpToPx(2f,itemView.context)
@@ -27,7 +29,6 @@ class TrackViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
             .with(itemView)
             .load(model.artworkUrl100)
             .placeholder(R.drawable.track_placeholder)
-            // Отдельное применение  .transforms(RoundedCorners(10)) и CenterCrop() не сработало
             .transforms(CenterCrop(), RoundedCorners(radius))
             .into(trackImage)
     }

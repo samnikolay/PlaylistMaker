@@ -23,7 +23,7 @@
         android:textSize="@dimen/title_size" />
 
     <Button
-        android:id="@+id/search_button"
+        android:id="@+id/searchButton"
         style="@style/MainButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -34,7 +34,7 @@
         app:icon="@drawable/search" />
 
     <Button
-        android:id="@+id/media_library_button"
+        android:id="@+id/mediaLibraryButton"
         style="@style/MainButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -44,7 +44,7 @@
         app:icon="@drawable/media_library" />
 
     <Button
-        android:id="@+id/settings_button"
+        android:id="@+id/settingsButton"
         style="@style/MainButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -52,5 +52,4 @@
         android:layout_marginBottom="28dp"
         android:text="@string/settings"
         app:icon="@drawable/settings" />
-
 </LinearLayout>

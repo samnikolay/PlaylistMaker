@@ -1,8 +1,9 @@
 package com.samnic.playlistmaker
 
 class Track(
-    val trackName: String, // Название композиции
-    val artistName: String, // Имя исполнителя
-    val trackTime: String, // Продолжительность трека
-    val artworkUrl100: String // Ссылка на изображение обложки
+    val trackName: String,
+    val artistName: String,
+    var trackTime: String,
+    val artworkUrl100: String,
+    val trackTimeMillis: Long
 )
