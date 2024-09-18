@@ -74,4 +74,7 @@
             android:layout_marginTop="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
+        <include layout="@layout/empty_search_view" />
+        <include layout="@layout/error_search_view" />
+
 </LinearLayout>

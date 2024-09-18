@@ -1,20 +1,22 @@
 package com.samnic.playlistmaker
 
+import android.content.ContentValues.TAG
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View
+import android.util.Log
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.GsonBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,7 +30,7 @@ class SearchActivity : AppCompatActivity() {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    private val iTunseApi = retrofit.create(ITunesApi::class.java)
+    private val iTunesApi = retrofit.create(ITunesApi::class.java)
 
     private val tracks = ArrayList<Track>()
     private val trackAdapter = TrackAdapter(tracks)
@@ -37,6 +39,9 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var backButton: ImageView
     private lateinit var clearButton: ImageView
     private lateinit var trackListView: RecyclerView
+    private lateinit var emptySearch: LinearLayout
+    private lateinit var errorSearch: LinearLayout
+    private lateinit var refreshButton: Button
 
 
     private var searchText: String? = null
@@ -49,6 +54,9 @@ class SearchActivity : AppCompatActivity() {
         backButton = findViewById(R.id.arrowBack)
         clearButton = findViewById(R.id.clearIcon)
         trackListView = findViewById(R.id.trackList)
+        emptySearch = findViewById(R.id.emptySearch)
+        errorSearch = findViewById(R.id.errorSearch)
+        refreshButton = findViewById(R.id.refreshButton)
 
         trackListView.adapter = trackAdapter
 
@@ -56,40 +64,26 @@ class SearchActivity : AppCompatActivity() {
             finish()
         }
 
+        refreshButton.setOnClickListener {
+            Log.e(TAG, "S text: ${searchField.text}")
+            resetVisability()
+            performSearch()
+        }
+
         clearButton.setOnClickListener {
             searchField.setText("")
+            resetVisability()
             tracks.clear()
             trackAdapter.notifyDataSetChanged()
-            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+            val inputMethodManager =
+                getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
             inputMethodManager?.hideSoftInputFromWindow(it.windowToken, 0)
         }
 
         searchField.setOnEditorActionListener { _, actionId, _ ->
+            resetVisability()
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                if (searchField.text.isNotEmpty()) {
-                    iTunseApi.searchTrack(searchField.text.toString(),SEARCH_TACK_LIMIT).enqueue(object :
-                        Callback<TrackResponse> {
-                        override fun onResponse(call: Call<TrackResponse>, response: Response<TrackResponse>) {
-                            if (response.code() == 200) {
-                                tracks.clear()
-                                if (response.body()?.results?.isNotEmpty() == true) {
-                                    tracks.addAll(response.body()?.results!!)
-                                    trackAdapter.notifyDataSetChanged()
-                                }
-                                if (tracks.isEmpty()) {
-                                    showStub(EMPTY_SEARCH_STUB)
-                                }
-                            } else {
-                                showStub(ERROR_SEARCH_STUB)
-                            }
-                        }
-
-                        override fun onFailure(call: Call<TrackResponse>, t: Throwable) {
-                            showStub(ERROR_SEARCH_STUB)
-                        }
-
-                    })
-                }
+                performSearch()
                 true
             }
             false
@@ -112,6 +106,38 @@ class SearchActivity : AppCompatActivity() {
         searchField.addTextChangedListener(simpleTextWatcher)
     }
 
+    private fun performSearch() {
+        if (searchField.text.isNotEmpty()) {
+            iTunesApi.searchTrack(searchField.text.toString(), SEARCH_TACK_LIMIT).enqueue(object :
+                Callback<TrackResponse> {
+                override fun onResponse(
+                    call: Call<TrackResponse>,
+                    response: Response<TrackResponse>
+                ) {
+                    Log.i(TAG, "onResponse: ${response.body()}")
+                    if (response.code() == 200) {
+                        tracks.clear()
+                        if (response.body()?.results?.isNotEmpty() == true) {
+                            tracks.addAll(response.body()?.results!!)
+                            trackAdapter.notifyDataSetChanged()
+                        }
+                        if (tracks.isEmpty()) {
+                            showStub(EMPTY_SEARCH_STUB)
+                        }
+                    } else {
+                        showStub(ERROR_SEARCH_STUB)
+                    }
+                }
+
+                override fun onFailure(call: Call<TrackResponse>, t: Throwable) {
+                    Log.e(TAG, "onFailure: $t")
+                    showStub(ERROR_SEARCH_STUB)
+                }
+
+            })
+        }
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString(EXTRA_SEARCH_TEXT, searchText)
@@ -119,7 +145,7 @@ class SearchActivity : AppCompatActivity() {
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        searchField.setText(savedInstanceState.getString(EXTRA_SEARCH_TEXT,""))
+        searchField.setText(savedInstanceState.getString(EXTRA_SEARCH_TEXT, ""))
     }
 
     private fun clearButtonVisibility(s: CharSequence?, clearButton: ImageView) {
@@ -127,14 +153,22 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun showStub(type: String) {
-        when(type) {
+        trackListView.isVisible = false
+        when (type) {
             EMPTY_SEARCH_STUB -> {
-                Toast.makeText(applicationContext,getString(R.string.empty_search),Toast.LENGTH_LONG).show()
+                emptySearch.isVisible = true
             }
+
             ERROR_SEARCH_STUB -> {
-                Toast.makeText(applicationContext,getString(R.string.error_search_title),Toast.LENGTH_LONG).show()
+                errorSearch.isVisible = true
             }
         }
+    }
+
+    private fun resetVisability() {
+        emptySearch.isVisible = false
+        errorSearch.isVisible = false
+        trackListView.isVisible = true
     }
 
     companion object {

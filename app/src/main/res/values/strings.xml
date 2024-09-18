@@ -10,15 +10,14 @@
     <string name="write_to_support">Написать в поддержку</string>
     <string name="terms_of_use">Пользовательское соглашение</string>
     <string name="search_edit_hint">Поиск</string>
-    <string name="empty_search">Ничего не найдено</string>
-    <string name="error_search_title">Проблемы со связью</string>
-    <string name="error_search_text">Загрузка не удалась. Проверьте подключение к интернету</string>
+    <string name="empty_search">Ничего не нашлось</string>
+    <string name="error_search">Проблемы со связью\n\nЗагрузка не удалась. Проверьте подключение к интернету</string>
     <string name="error_search_refresh">Обновить</string>
-
 
     <string name="share_text">https://practicum.yandex.ru/android-developer/</string>
     <string name="support_email_title">Сообщение разработчикам и разработчицам приложения Playlist Maker</string>
     <string name="support_email_text">Спасибо разработчикам и разработчицам за крутое приложение!</string>
     <string name="my_email">gavrilov.jobs@yandex.ru</string>
     <string name="terms_of_use_link">https://yandex.ru/legal/practicum_offer/</string>
+
 </resources>
